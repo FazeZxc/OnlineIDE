@@ -1,19 +1,27 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
-import './App.css'
-import React, { useState } from 'react';
-import CodeEditor from './pages/editor';
-
+import { ConfigProvider } from "antd";
+import "./App.css";
+import { AppRenderer } from "./pageRenderers/appRenderer";
 
 function App() {
-  const [code, setCode] = useState('');
-  const handleCodeChange = (newCode : string) => {
-    setCode(newCode);
-  }
   return (
-  <div>
-    <h1>Web-based Code Editor</h1>
-    <CodeEditor value={code} onChange={handleCodeChange} />
-  </div>
-)}
+    <div>
+      <AppRenderer />
+      <ConfigProvider
+        theme={{
+          components: {
+            Layout: {
+              bodyBg: "#272727",
+              colorText: "#ffffff",
+              footerBg: "#272727",
+              siderBg: "#272727",
+              footerPadding: "0px",
+            },
+          },
+        }}
+      />
+    </div>
+  );
+}
 
 export default App;
